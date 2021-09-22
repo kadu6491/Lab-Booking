@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "iLab",
+    "userInterfaceStyle": "automatic",
     "slug": "iLab",
     "version": "1.0.0",
     "orientation": "portrait",
