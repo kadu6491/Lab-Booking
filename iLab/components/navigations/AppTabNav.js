@@ -19,7 +19,6 @@ export default function AppTabNav(props){
            <Tab.Navigator 
                 screenOptions={({route}) => ({
                     tabBarIcon: ({focused, color, size }) => {
-                        
                         if(route.name === "Home" && focused === true){
                             return <Entypo 
                                 name="home"
@@ -37,7 +36,9 @@ export default function AppTabNav(props){
                     },
                     headerShown: false,
                     // tabBarInactiveTintColor: "#6c757d",
-                    tabBarActiveTintColor: "#293241"
+                    tabBarActiveTintColor: "#eee",
+                    tabBarStyle: {backgroundColor: "#232323"}
+                     
                 })}
            >
                 <Tab.Screen 

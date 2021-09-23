@@ -1,0 +1,11 @@
+Dark
+    - Background: #121212
+    - Title: #7a7a7a
+    - Caption: #696969
+    - calendaBack: "#232323"
+    selectedDayBackgroundColor: "#696969",
+    todayTextColor: "#7a7a7d",
+    dayTextColor: "white",
+    monthTextColor: "white",
+    textDisabledColor: "#7a7a7d",
+    dotColor: "#7a7a7d",

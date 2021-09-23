@@ -6,11 +6,11 @@ import AgendaCalender from '../calender/AgendaCalender';
 
 export default function Home(props){
     return (
-        <SafeAreaView style={{flex: 1}}>
-            <View style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: "#121212"}}>
+            <View style={{flex: 1, backgroundColor: "#121212"}}>
                 <View style={{marginLeft:28, flexDirection:'column'}}>
-                    <Caption style={styles.caption}>Welcome Back, Peter</Caption>
-                    <Title style={styles.title}>Calender</Title>
+                    <Caption style={[styles.caption, {color: "#696969"}]}>Welcome Back, Peter</Caption>
+                    <Title style={[styles.title, {color: "#7a7a7a"}]}>Calender</Title>
                 </View>
 
                 <View style={styles.agenda}>

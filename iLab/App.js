@@ -12,7 +12,7 @@ export default function App() {
 
   return (
       <View style={{flex: 1, backgroundColor: "white"}}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <AppTabNav />
       </View>
   );
