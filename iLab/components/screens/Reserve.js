@@ -1,24 +1,28 @@
 import React, {useState} from 'react'
 import { SafeAreaView, StyleSheet, View } from 'react-native'
-import { Title } from 'react-native-paper';
+import { Button, Caption, Title } from 'react-native-paper';
+import BookCalendar from '../calender/BookCalendar';
 
-import DropDownPicker from 'react-native-dropdown-picker';
+import DropList from '../list/DropList';
+import ModalCom from '../modal/ModalCom';
 
 export default function Reserve(props){
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        {label: 'Barry Art Building', value: 'BAB', disabled: true},
-        {label: 'BAB 1003', value: 'bab1003', parent: 'BAB'},
-        {label: 'BAB 2002', value: 'bab2002', parent: 'BAB'},
-        {label: 'BAB 2009', value: 'bab2009', parent: 'BAB'},
-        {label: 'BAB 2011', value: 'bab2011', parent: 'BAB'},
-      
-        {label: 'Hixon Art Building', value: 'HAS', disabled: true},
-        {label: 'HAS 2000', value: 'has2000', parent: 'HAS'},
-        {label: 'HAS 2006', value: 'has2006', parent: 'HAS'},
-        {label: 'HAS 2008', value: 'has2008', parent: 'HAS'},
-      ]);
+    const [open, setOpen] = useState(false)
+    const [calModal, setCalModal] = React.useState(false);
+    const [timeModal, setTimeModal] = React.useState(false);
+    const [date, setDate] = React.useState()
+
+    const showCalModal = () => setCalModal(true);
+    const hideCalModal = () => setCalModal(false);
+
+    const showTimeModal = () => setTimeModal(true);
+    const hideTimeModal = () => setTimeModal(false);
+
+    const handleDate = (day) => {
+        setDate(day.dateString)
+        setCalModal(false)
+    }
+
     return (
        <SafeAreaView style={{flex: 1, backgroundColor: "#121212"}}>
             <View style={{flex: 1}}>
@@ -27,42 +31,65 @@ export default function Reserve(props){
                 </View>
 
                 <View style={styles.drop}>
-                    <DropDownPicker
-                        multiple={true}
-                        min={0}
-                        max={1}
-                        open={open}
-                        value={value}
-                        items={items}
-                        setOpen={setOpen}
-                        setValue={setValue}
-                        setItems={setItems}
-                        searchable={true}
-                        closeAfterSelecting={true}
-                        maxHeight={400}
-                        searchPlaceholder="Search Lab... ex BAB 2011"
-                        placeholder="Please select Building and Room"
-                        theme="DARK"
-                        style={{
-                            backgroundColor: "#232323",
-                        }}
-                        textStyle={{
-                            color: "#eee"
-                        }}
-                        listParentContainerStyle={{
-                            backgroundColor: "#232323"
-                        }}
-                        listChildContainerStyle={{
-                            backgroundColor: "#232323"
-                        }}
-                        searchContainerStyle={{
-                            backgroundColor: "#232323",
-                            
-                        }}
-                        
-                        
+                    <Caption style={styles.caption}>Select a Lab</Caption>
+                    <DropList 
+                        onOpen={() => (setOpen(true))}
+                        onClose={() => (setOpen(false))}
                     />
                 </View>
+
+                <View style={[styles.datetime, {display: open && 'none'}]}>
+                    <View style={styles.date}>
+                        <Caption style={styles.caption}>Date {date}</Caption>
+                        <Button 
+                            mode="outlined"
+                            color="white"
+                            style={{
+                                borderColor: "#7a7a7a",
+                                borderWidth: 1.4,
+                            }}
+                            labelStyle={{
+                                fontSize: 10,
+                            }}
+                            onPress={showCalModal}
+                        >
+                            {date == null || undefined || "" ? "Select Time" : "Change Date"}
+                        </Button>
+
+                        
+                    </View>
+                    
+                    <View style={styles.time}>
+                        <Caption style={styles.caption}>Time</Caption>
+                        <Button 
+                            mode="outlined"
+                            color="white"
+                            style={{
+                                borderColor: "#7a7a7a",
+                                borderWidth: 1.4,
+                            }}
+                            labelStyle={{
+                                fontSize: 10,
+                            }}
+                            onPress={showTimeModal}
+                        >
+                            Select time
+                        </Button>
+                    </View>
+                </View>
+
+                <ModalCom 
+                    visible={calModal} 
+                    hide={hideCalModal} 
+                    title="Pick a Date"
+                    main={<BookCalendar onDayPress={(day) => (handleDate(day))}/>}
+                />
+
+                <ModalCom 
+                    visible={timeModal} 
+                    hide={hideTimeModal} 
+                    title="Pick a time"
+                />
             </View>
        </SafeAreaView>
     )
@@ -81,5 +108,29 @@ const styles = StyleSheet.create({
     drop: {
         marginHorizontal: 15,
         marginVertical: 10,
+    },
+    caption: {
+        color: 'white',
+        paddingVertical: 5,
+        fontSize: 15,
+        letterSpacing: 1.1,
+        paddingLeft: 6,
+        fontWeight: '400'
+    },
+    datetime: {
+        // backgroundColor: "red",
+        display: "flex",
+        flexDirection: 'row',
+        justifyContent: "space-between",
+        marginVertical: 10,
+        marginHorizontal: 15,
+    },
+    date: {
+        // backgroundColor: 'pink',
+        width: "45%"
+    },
+    time: {
+        // backgroundColor: 'yellow',
+        width: "45%",
     }
 })
