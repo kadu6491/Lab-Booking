@@ -3,23 +3,54 @@ import { Button, StyleSheet, Text, View } from 'react-native'
 import {Agenda} from 'react-native-calendars';
 import { Surface, Title } from 'react-native-paper';
 
+let d = new Date()
+const h = d.getHours()
+const m = d.getMinutes()
 const items = {
-    '2021-09-23': [{}],
-    '2021-09-24': [{}],
-    '2021-09-26': [{}],
+    '2021-09-24': [
+        {
+            starttime: h + ":" + m,
+            endtime: h + ":" + (m + 30),
+            lab:  "BAB 1003",
+            note: "Finish Homework"
+        },
+        {
+            starttime: (h+2) + ":" + m,
+            endtime: (h+2) + ":" + (m+30),
+            lab:  "BAB 2011",
+            note: "Print out HW-1"
+        },
+    ],
+    '2021-09-26': [
+        {
+            starttime: h + ":" + m,
+            endtime: h + ":" + (m+30),
+            lab:  "BAB 2002",
+            note: ""
+        },
+        {
+            starttime: (h+2) + ":" + m,
+            endtime: (h+2) + ":" + (m+30),
+            lab:  "HAS 2008",
+            note: "Create new design"
+        },
+    ],
     '2021-09-28': [{}],
     '2021-10-05': [{}],
 
 }
 export default function AgendaCalender(props){
-    const renderItem = () => {
+    const RenderItem = ({item}) => {
         return (
             // <View style={styles.renderContainer}>
             //     <Text>Date</Text>
             // </View>
+            // <Text style={{color: "#eee"}}>{Object.keys(items).length}</Text>
             <Surface style={[styles.renderContainer, {backgroundColor: "#232323"}]}>
-                <Text style={{color: "#eee"}}>Some Data Here</Text>
+                <Text style={{color: "#eee"}}>{item.starttime} - {item.endtime}</Text>
+                <Text style={{color: "#7a7a7a"}}>{item.lab}</Text>
             </Surface>
+
         )
     }
 
@@ -34,7 +65,7 @@ export default function AgendaCalender(props){
        <View style={styles.root}>
            <Agenda 
                 items={items}
-                renderItem={renderItem}
+                renderItem={(item, firstItemInDay) => (<RenderItem item={item}/>)}
                 renderEmptyData={renderEmptyItem}
                 maxDate={'2021-10-10'}
                 showClosingKnob

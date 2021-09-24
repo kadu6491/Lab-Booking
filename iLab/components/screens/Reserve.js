@@ -5,6 +5,7 @@ import BookCalendar from '../calender/BookCalendar';
 
 import DropList from '../list/DropList';
 import ModalCom from '../modal/ModalCom';
+import BookTime from '../time/BookTime';
 
 export default function Reserve(props){
     const [open, setOpen] = useState(false)
@@ -23,6 +24,8 @@ export default function Reserve(props){
         setCalModal(false)
     }
 
+    // console.log(new Date(Date.now() + 12096e5))
+
     return (
        <SafeAreaView style={{flex: 1, backgroundColor: "#121212"}}>
             <View style={{flex: 1}}>
@@ -40,8 +43,11 @@ export default function Reserve(props){
 
                 <View style={[styles.datetime, {display: open && 'none'}]}>
                     <View style={styles.date}>
-                        <Caption style={styles.caption}>Date {date}</Caption>
-                        <Button 
+                        <Caption style={styles.caption}>Select Date {date}</Caption>
+                        <BookTime 
+                            mode="datetime"
+                        />
+                        {/* <Button 
                             mode="outlined"
                             color="white"
                             style={{
@@ -54,28 +60,15 @@ export default function Reserve(props){
                             onPress={showCalModal}
                         >
                             {date == null || undefined || "" ? "Select Time" : "Change Date"}
-                        </Button>
+                        </Button> */}
 
                         
                     </View>
                     
-                    <View style={styles.time}>
-                        <Caption style={styles.caption}>Time</Caption>
-                        <Button 
-                            mode="outlined"
-                            color="white"
-                            style={{
-                                borderColor: "#7a7a7a",
-                                borderWidth: 1.4,
-                            }}
-                            labelStyle={{
-                                fontSize: 10,
-                            }}
-                            onPress={showTimeModal}
-                        >
-                            Select time
-                        </Button>
-                    </View>
+                    {/* <View style={styles.time}>
+                        <Caption style={styles.caption}>Select Time</Caption>
+                        <BookTime mode="time"/>
+                    </View> */}
                 </View>
 
                 <ModalCom 
@@ -89,6 +82,7 @@ export default function Reserve(props){
                     visible={timeModal} 
                     hide={hideTimeModal} 
                     title="Pick a time"
+                    main={<BookTime />}
                 />
             </View>
        </SafeAreaView>
@@ -110,7 +104,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     caption: {
-        color: 'white',
+        color: '#7a7a7a',
         paddingVertical: 5,
         fontSize: 15,
         letterSpacing: 1.1,
@@ -127,7 +121,7 @@ const styles = StyleSheet.create({
     },
     date: {
         // backgroundColor: 'pink',
-        width: "45%"
+        width: "90%"
     },
     time: {
         // backgroundColor: 'yellow',
