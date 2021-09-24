@@ -6,11 +6,12 @@ import { Surface, Title } from 'react-native-paper';
 let d = new Date()
 const h = d.getHours()
 const m = d.getMinutes()
+
 const items = {
     '2021-09-24': [
         {
             starttime: h + ":" + m,
-            endtime: h + ":" + (m + 30),
+            endtime: h + ":" + (d.getMinutes() + 30),
             lab:  "BAB 1003",
             note: "Finish Homework"
         },

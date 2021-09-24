@@ -3,6 +3,8 @@ import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import { DrawerActions } from '@react-navigation/native';
 import { Caption, Title } from 'react-native-paper';
 import AgendaCalender from '../calender/AgendaCalender';
+import TimeEvents from '../calender/TimeEvents';
+;
 
 export default function Home(props){
     return (
@@ -14,7 +16,8 @@ export default function Home(props){
                 </View>
 
                 <View style={styles.agenda}>
-                    <AgendaCalender />
+                    {/* <AgendaCalender /> */}
+                    <TimeEvents />
                 </View>
             </View>
         </SafeAreaView>
@@ -38,6 +41,7 @@ const styles = StyleSheet.create({
     agenda: {
         flex: 1,
         display: 'flex',
-        alignItems: 'center'
+        alignItems: 'center',
+        // backgroundColor: "red"
     }
 })

@@ -1565,6 +1565,11 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
+"@mikezzb/react-native-timetable@^0.2.3":
+  "integrity" "sha512-n4QdEHJUb16ObVM2yr9Wl6a0ucOu6ePuY40+Owf01JZq+5Y/AzzSOIFxCm8qkerffBoV5bjxaGnj+qUJxFlo7Q=="
+  "resolved" "https://registry.npmjs.org/@mikezzb/react-native-timetable/-/react-native-timetable-0.2.3.tgz"
+  "version" "0.2.3"
+
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
   "resolved" "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
